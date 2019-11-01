@@ -1,0 +1,57 @@
+<% include partials/_header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>n°</td>
+            <td>Nombre</td>
+            <td>Dirección</td>
+            <td>Telefono</td>
+            <td>Acción</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].name %></td>
+                <td><%= data[i].address %></td>
+                <td><%= data[i].phone %></td>
+                <td>
+                  <a href="/update/<%= data[i].id %>" class="btn btn-info">Editar</a> <br> <br>
+                  <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Borrar</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <div class="card-body">
+
+        <form action="/add" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Nombre" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="text" name="address" placeholder="Dirección" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="phone" placeholder="Telefono" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-success">
+            Guardar Registro
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footer %>
